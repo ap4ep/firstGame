@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _input = new PlayerInput();
-        _input.KBandMouseScheme.
     }
 
     private void OnEnable()
