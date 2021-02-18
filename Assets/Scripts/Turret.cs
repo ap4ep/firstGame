@@ -46,7 +46,7 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             _inRange = true;
         }
@@ -54,7 +54,7 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.tag == "Player")
         { 
             _inRange = false;
         }

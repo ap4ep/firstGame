@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamageble
     private void Awake()
     {
         _input = new PlayerInput();
+        Cursor.visible = false;
     }
 
     private void OnEnable()
