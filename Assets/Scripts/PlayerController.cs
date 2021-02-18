@@ -42,9 +42,12 @@ public class PlayerController : MonoBehaviour, IDamageble
     private void Shoot()
     {
         if (_input.Player.Shoot.triggered)
-            Instantiate(_bullet, _spawnBulletPosition.transform.position, _spawnBulletPosition.transform.rotation);
-    }
+        { 
+            Instantiate(_bullet, _spawnBulletPosition.transform.position, _spawnBulletPosition.transform.rotation)
+                .GetComponent<Bullet>().Init((int)_moveSpeed + 6);
 
+        }
+    }
     private void Move()
     {
         Vector2 direction = _input.Player.Move.ReadValue<Vector2>();

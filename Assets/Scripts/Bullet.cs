@@ -12,6 +12,11 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * _flySpeed * Time.deltaTime);
     }
 
+    public void Init(int bulletSpeed)
+    {
+        _flySpeed = bulletSpeed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" || other.tag == "Enemy")
