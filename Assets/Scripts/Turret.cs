@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour, IDamageble
+public class Turret : MonoBehaviour
 {
-    [SerializeField] private int _hp = 10;
     [SerializeField] private GameObject _tower;
     [SerializeField] private float _rotationSpeed = 1f;
     [SerializeField] private Bullet _bullet;
@@ -15,12 +14,10 @@ public class Turret : MonoBehaviour, IDamageble
     private GameObject _player = null;
     private bool _inRange = false;
     
-
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
     }
-
 
     private void Update()
     {
@@ -61,17 +58,5 @@ public class Turret : MonoBehaviour, IDamageble
         { 
             _inRange = false;
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        _hp -= damage;
-        if (_hp <= 0)
-            Death();
-    }
-
-    private void Death()
-    {
-        Destroy(gameObject);
     }
 }

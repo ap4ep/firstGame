@@ -5,20 +5,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private int _damage = 2;
-    [SerializeField] private float _flySpeed = 5f;
+    [SerializeField] private float _flySpeed = 10f;
 
     void Update()
     {
         transform.Translate(Vector3.forward * _flySpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision == GetComponent<IDamageble>())
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<IDamageble>().TakeDamage(_damage);
+            other.GetComponent<IDamageble>().TakeDamage(_damage);
             Destroy(gameObject);
         }
-        Destroy(gameObject);
+
+        if (other.gameObject.tag == "Enviroment")
+            Destroy(gameObject);
     }
 }
