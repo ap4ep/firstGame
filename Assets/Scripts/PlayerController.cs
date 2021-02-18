@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamageble
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _rotationSpeed = 30f;
     [SerializeField] private int _hp = 100;
+    [SerializeField] private int _bulletCount = 30;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _spawnBulletPosition;
     
@@ -54,6 +55,22 @@ public class PlayerController : MonoBehaviour, IDamageble
     private void MouseRotation()
     {
         transform.rotation = Quaternion.Euler(0f, _input.Player.MousePosition.ReadValue<Vector2>().x / _rotationSpeed, 0f);
+    }
+
+    public void PlayerHealing(int healthPower)
+    {
+        if((healthPower + _hp) <= 100)
+            _hp += healthPower;
+        if((healthPower + _hp) >= 100)
+        {
+            healthPower = (healthPower + _hp) - 100;
+            _hp += healthPower;
+        }
+    }
+
+    public void BulletPickup(int bulletCount)
+    {
+        _bulletCount += bulletCount;
     }
 
     public void TakeDamage(int damage)
