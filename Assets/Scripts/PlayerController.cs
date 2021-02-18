@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamageble
     [SerializeField] private int _bulletCount = 30;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _spawnBulletPosition;
+    [SerializeField] private Texture2D _cursor;
     
     private PlayerInput _input;
     private Vector2 _mousePosition;
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamageble
     private void Awake()
     {
         _input = new PlayerInput();
-        Cursor.visible = false;
+        Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
     }
 
     private void OnEnable()
@@ -54,7 +55,15 @@ public class PlayerController : MonoBehaviour, IDamageble
 
     private void MouseRotation()
     {
-        transform.rotation = Quaternion.Euler(0f, _input.Player.MousePosition.ReadValue<Vector2>().x / _rotationSpeed, 0f);
+        Plane playerPlane = new Plane(Vector3.up, transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(_input.Player.MousePosition.ReadValue<Vector2>());
+        float hitdist = 0.0f;
+        if (playerPlane.Raycast(ray, out hitdist))
+        {
+            Vector3 targetPoint = ray.GetPoint(hitdist);
+            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        }
     }
 
     public void PlayerHealing(int healthPower)
