@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private int _damage = 2;
+    [SerializeField] private int _damage;
     [SerializeField] private float _flySpeed = 10f;
 
     void Update()
@@ -12,16 +12,17 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * _flySpeed * Time.deltaTime);
     }
 
-    public void Init(int bulletSpeed)
+    public void Init(int bulletSpeed, int damage)
     {
         _flySpeed = bulletSpeed;
+        _damage = damage;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Enemy")
+        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageble>().TakeDamage(_damage);
+            other.GetComponent<IDamage>().TakeDamage(_damage);
             Destroy(gameObject);
         }
 

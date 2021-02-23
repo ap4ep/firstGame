@@ -6,9 +6,9 @@ public class Health : MonoBehaviour
 {    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         { 
-            other.GetComponent<PlayerController>().PlayerHealing(Random.Range(5, 30));
+            other.GetComponent<IHeal>().TakeHealth(Random.Range(5, 30));
             Destroy(gameObject);
         }
     }
