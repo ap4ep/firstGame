@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8268492608138114199}
   - component: {fileID: 8268492608138114195}
   - component: {fileID: 8592322516043274680}
+  - component: {fileID: 4783588455125678083}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Enemy
@@ -79,7 +80,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 5
-  _currentHP: 0
   _followDistance: 12
   _bullet: {fileID: 5989080470725400788, guid: 04045b2984b816d4e89fb5406fe74229, type: 3}
   _spawnBulletPosition: {fileID: 8268492609731516766}
@@ -95,9 +95,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcbc72a2decb3741bb136510afae2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTag: Player
   _turnableObject: {fileID: 8268492609613001301}
   _rotationSpeed: 6
+--- !u!208 &4783588455125678083
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268492608138114198}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.3
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8268492608424027281
 GameObject:
   m_ObjectHideFlags: 0

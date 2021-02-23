@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class TurnOnTarget : MonoBehaviour
 {
-    [SerializeField] private string _targetTag;
     [SerializeField] private GameObject _turnableObject;
     [SerializeField] private float _rotationSpeed = 6f;
-
-    private GameObject _target = null;
-
-    void Start()
-    {
-        _target = GameObject.FindGameObjectWithTag(_targetTag);
-    }
 
     public void ObjectRotate(GameObject target)
     {
