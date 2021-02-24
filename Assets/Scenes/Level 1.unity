@@ -7139,8 +7139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28672c905ddb994468dcf66c0df8962d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 907896251}
-  TargetOffset: {x: 0, y: 0, z: 0}
+  _target: {fileID: 907896251}
+  _targetOffset: {x: 0, y: 0, z: 0}
+  _smoothFactor: 0.9
 --- !u!81 &1152205480
 AudioListener:
   m_ObjectHideFlags: 0

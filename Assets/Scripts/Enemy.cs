@@ -33,6 +33,7 @@ public class Enemy : Character
         if (CheckDistance())
         {
            _navMeshAgent.stoppingDistance = 3.5f;
+            _tracking.ObjectRotate(_player);
             _navMeshAgent.SetDestination(_player.transform.position);
         }    
         else

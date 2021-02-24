@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _rotationSpeed = 30f;
 
+    private Rigidbody _rigidbody;
     private PlayerInput _input;
 
     public event Action Fired = default;
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     private void Awake()
     {
         _input = new PlayerInput();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -33,12 +35,11 @@ public class PlayerControl : MonoBehaviour
         MouseRotation(_input.Player.MousePosition.ReadValue<Vector2>());
         Shoot();
     }
+
     private void Move(Vector2 input)
     {
-        Vector2 direction = input;
-        float scaledMoveSpeed = _moveSpeed * Time.deltaTime;
-        Vector3 moveDirection = new Vector3(direction.x, 0, direction.y);
-        transform.position += moveDirection * scaledMoveSpeed;
+        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
+        _rigidbody.velocity = moveDirection.normalized * _moveSpeed;
     }
 
     private void MouseRotation(Vector2 mousePosition)
