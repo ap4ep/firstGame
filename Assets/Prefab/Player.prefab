@@ -114,7 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 100
-  _currentHP: 0
   _bulletCount: 30
 --- !u!114 &1854264780
 MonoBehaviour:
@@ -183,6 +182,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5638175335530493524}
     m_Modifications:
+    - target: {fileID: 6494587448254066053, guid: 567ef54d77150994fa7ffe26ab296f41, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7406935129985091828, guid: 567ef54d77150994fa7ffe26ab296f41, type: 3}
       propertyPath: m_Name
       value: Pistol

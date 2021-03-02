@@ -28,8 +28,6 @@ public class Enemy : Character
 
     private void Update()
     {
-        
-
         if (CheckDistance())
         {
            _navMeshAgent.stoppingDistance = 3.5f;
@@ -44,8 +42,7 @@ public class Enemy : Character
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
                 _navMeshAgent.SetDestination(_waypoints[_currentWaypointIndex].position);
             }
-        }
-            
+        }  
     }
 
     private bool CheckDistance()
