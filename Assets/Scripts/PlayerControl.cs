@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     private PlayerInput _input;
 
     public event Action Fired = default;
+    public event Action Droped = default;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class PlayerControl : MonoBehaviour
         Move(_input.Player.Move.ReadValue<Vector2>());
         MouseRotation(_input.Player.MousePosition.ReadValue<Vector2>());
         Shoot();
+        GrenadeDroped();
     }
 
     private void Move(Vector2 input)
@@ -59,5 +61,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (_input.Player.Shoot.triggered)
             Fired?.Invoke();
+    }
+    
+    private void GrenadeDroped()
+    {
+        if (_input.Player.DropGrenade.triggered)
+            Droped?.Invoke();
     }
 }

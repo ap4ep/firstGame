@@ -28,6 +28,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DropGrenade",
+                    "type": "Button",
+                    "id": "0edaf57d-d185-4ecc-98b0-7e0bca2b56e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -160,6 +168,17 @@
                     "processors": "",
                     "groups": "KB and Mouse",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3c926b9-c197-4079-adc4-f73d68e0f063",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KB and Mouse",
+                    "action": "DropGrenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -320,6 +320,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21685311}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &26648360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 867270878086639627, guid: 1ccb4e1bd9a3a11429f451af54e93d8c, type: 3}
+  m_PrefabInstance: {fileID: 5638175335162090479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &32730213
 GameObject:
   m_ObjectHideFlags: 0
@@ -12599,6 +12604,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7691074851113614858, guid: 1ccb4e1bd9a3a11429f451af54e93d8c, type: 3}
+      propertyPath: _grenade
+      value: 
+      objectReference: {fileID: 3700559465482390201, guid: d5883a2ba40f5da46aee3e6121764465, type: 3}
+    - target: {fileID: 7691074851113614858, guid: 1ccb4e1bd9a3a11429f451af54e93d8c, type: 3}
+      propertyPath: _grenadeSpawnPoint
+      value: 
+      objectReference: {fileID: 26648360}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ccb4e1bd9a3a11429f451af54e93d8c, type: 3}
 --- !u!1001 &5940465845033810460
@@ -12665,14 +12678,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1091652452, guid: 0d1f0824a3e354e489d060dee52f239c, type: 3}
-      propertyPath: _power
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 7490476477528777153, guid: 0d1f0824a3e354e489d060dee52f239c, type: 3}
-      propertyPath: m_Radius
-      value: 2.46
-      objectReference: {fileID: 0}
     - target: {fileID: 7490476477528777155, guid: 0d1f0824a3e354e489d060dee52f239c, type: 3}
       propertyPath: m_Name
       value: Mine
