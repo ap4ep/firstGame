@@ -8,9 +8,9 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" || other.tag == "Player")
+        if (other.CompareTag("Enemy") || other.CompareTag("Player"))
         {
-            other.GetComponent<IDamageble>().TakeDamage(_damage);
+            other.GetComponent<IDamage>().TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

@@ -6,9 +6,9 @@ public class BulletPack : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") 
+        if (other.CompareTag("Player")) 
         {
-            other.GetComponent<PlayerController>().PlayerHealing(Random.Range(5, 30));
+            other.GetComponent<Player>().TakeBullet(Random.Range(5, 30));
             Destroy(gameObject);
         }
     }
