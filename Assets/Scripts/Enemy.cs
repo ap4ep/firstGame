@@ -10,6 +10,7 @@ public class Enemy : Character
     [SerializeField] private float _trackingDistance = 10f;
     [SerializeField] private float _time = 2f;
     private NavMeshAgent _navMeshAgent;
+    private Animator _animator;
     private TurnOnTarget _tracking;
     private GameObject _player;
     private int _currentWaypointIndex = 0;
@@ -17,6 +18,7 @@ public class Enemy : Character
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
         _tracking = GetComponent<TurnOnTarget>();
         _player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -31,18 +33,22 @@ public class Enemy : Character
     {
         if (CheckDistance())
         {
-           _navMeshAgent.stoppingDistance = 3.5f;
+            _animator.SetBool("Move", true);
+            _navMeshAgent.stoppingDistance = 3.5f;
             _tracking.ObjectRotate(_player);
             _navMeshAgent.SetDestination(_player.transform.position);
             if ((_time += Time.deltaTime) > 1.0f)
             {
                 _time = 0.0f;
+                _animator.SetBool("Move", false);
                 Attack();
+                _animator.SetBool("Shoot", false);
             }
         }    
         else
         {
             _navMeshAgent.stoppingDistance = 0f;
+            _animator.SetBool("Move", true);
             if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance < 0.5f)
             {
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
@@ -53,6 +59,7 @@ public class Enemy : Character
 
     private void Attack()
     {
+        _animator.SetBool("Shoot", true);
         GetComponentInChildren<Attack>().OnShoot();
     }
 

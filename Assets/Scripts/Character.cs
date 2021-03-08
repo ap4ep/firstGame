@@ -36,7 +36,7 @@ public abstract class Character : MonoBehaviour, IDamage
         }  
     }
 
-    public void CharacterDeath()
+    public virtual void CharacterDeath()
     {
         Destroy(gameObject);
     }
