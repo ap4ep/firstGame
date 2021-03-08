@@ -8,6 +8,7 @@ public class Enemy : Character
 {
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private float _trackingDistance = 10f;
+    [SerializeField] private float _time = 2f;
     private NavMeshAgent _navMeshAgent;
     private TurnOnTarget _tracking;
     private GameObject _player;
@@ -28,13 +29,16 @@ public class Enemy : Character
 
     private void Update()
     {
-        
-
         if (CheckDistance())
         {
            _navMeshAgent.stoppingDistance = 3.5f;
             _tracking.ObjectRotate(_player);
             _navMeshAgent.SetDestination(_player.transform.position);
+            if ((_time += Time.deltaTime) > 1.0f)
+            {
+                _time = 0.0f;
+                Attack();
+            }
         }    
         else
         {
@@ -44,8 +48,12 @@ public class Enemy : Character
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
                 _navMeshAgent.SetDestination(_waypoints[_currentWaypointIndex].position);
             }
-        }
-            
+        }  
+    }
+
+    private void Attack()
+    {
+        GetComponentInChildren<Attack>().OnShoot();
     }
 
     private bool CheckDistance()
