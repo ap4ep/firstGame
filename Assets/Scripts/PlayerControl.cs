@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
 
     public event Action Fired = default;
     public event Action Droped = default;
+    public event Action CalledMenu = default;
 
     private void Awake()
     {
@@ -38,6 +39,8 @@ public class PlayerControl : MonoBehaviour
         MouseRotation(_input.Player.MousePosition.ReadValue<Vector2>());
         Shoot();
         GrenadeDroped();
+        if(_input.Player.Menu.triggered)
+            CalledMenu?.Invoke();
     }
 
     private void Move(Vector2 input)
@@ -73,7 +76,6 @@ public class PlayerControl : MonoBehaviour
         }
         else
             _animator.SetBool("Shoot", false);
-            
     }
     
     private void GrenadeDroped()
@@ -85,6 +87,5 @@ public class PlayerControl : MonoBehaviour
         }
         else
             _animator.SetBool("Drop", false);
-
     }
 }
