@@ -49,6 +49,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""75699bbf-7b6a-454e-a32e-890808450e9c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -194,6 +202,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""DropGrenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""500bfadd-9051-4a15-939e-5e14a974cc3d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and Mouse"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +242,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         m_Player_DropGrenade = m_Player.FindAction("DropGrenade", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,6 +296,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_MousePosition;
     private readonly InputAction m_Player_DropGrenade;
+    private readonly InputAction m_Player_Menu;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -284,6 +305,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputAction @DropGrenade => m_Wrapper.m_Player_DropGrenade;
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +327,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @DropGrenade.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGrenade;
                 @DropGrenade.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGrenade;
                 @DropGrenade.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropGrenade;
+                @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +346,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @DropGrenade.started += instance.OnDropGrenade;
                 @DropGrenade.performed += instance.OnDropGrenade;
                 @DropGrenade.canceled += instance.OnDropGrenade;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -340,5 +368,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnDropGrenade(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
