@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private PlayerInput _input;
+    private Animator _animator;
 
     public event Action Fired = default;
     public event Action Droped = default;
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     {
         _input = new PlayerInput();
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -40,6 +42,11 @@ public class PlayerControl : MonoBehaviour
 
     private void Move(Vector2 input)
     {
+        if (input.x != 0 || input.y != 0)
+            _animator.SetBool("Move", true);
+        else
+            _animator.SetBool("Move", false);
+        
         Vector3 moveDirection = new Vector3(input.x, 0, input.y);
         _rigidbody.velocity = moveDirection.normalized * _moveSpeed;
     }
@@ -60,12 +67,24 @@ public class PlayerControl : MonoBehaviour
     private void Shoot()
     {
         if (_input.Player.Shoot.triggered)
+        {
+            _animator.SetBool("Shoot", true);
             Fired?.Invoke();
+        }
+        else
+            _animator.SetBool("Shoot", false);
+            
     }
     
     private void GrenadeDroped()
     {
         if (_input.Player.DropGrenade.triggered)
+        {
+            _animator.SetBool("Drop", true);
             Droped?.Invoke();
+        }
+        else
+            _animator.SetBool("Drop", false);
+
     }
 }

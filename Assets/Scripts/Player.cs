@@ -26,4 +26,10 @@ public class Player : Character, IHeal
             //HealthChanged(_currentHP);
         }
     }
+
+    public override void CharacterDeath()
+    {
+        GetComponent<Animator>().SetBool("Death", true);
+        Destroy(gameObject, 4);
+    }
 }
